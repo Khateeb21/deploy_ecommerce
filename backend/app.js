@@ -5,11 +5,7 @@ import cookieParser from "cookie-parser";
 import { connectDatabase } from "./config/dbConnect.js";
 import errorMiddleware from "./middlewares/errors.js";
 import path from "path"
-import { fileURLToPath } from "url";
-// Handle Uncaught exceptions
 
- const __filename=fileURLToPath(import.meta.url)
-const __dirname=path.dirname(__filename)
 process.on("uncaughtException", (err) => {
   console.log(`ERROR: ${err}`);
   console.log("Shutting down due to uncaught expection");
@@ -42,17 +38,16 @@ app.use("/api/v1", authRoutes);
 app.use("/api/v1", orderRoutes);
 app.use("/api/v1", paymentRoutes);
 console.log(process.env.NODE_ENV)
-if(process.env.NODE_ENV==="PRODUCTION"){
-app.use(express.static(path.join( __dirname,"../frontend/build")))
-app.get('*',(req,res)=>{
 
-res.sendFile(path.resolve(__dirname,"../frontend/build/index.html"))
-})
-
-}
 // Using error middleware
 app.use(errorMiddleware);
+app.get("/",(req,res)=>{
+app.use(express.static(path.resolve(__dirname,"frontend","build")))
+res.sendFile(path.resolve(__dirname,"frontend","build","index.html"));
 
+
+
+}
 const server = app.listen(4000, () => {
   console.log(
     `Server started on PORT: ${process.env.PORT} in ${process.env.NODE_ENV} mode.`
