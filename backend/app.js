@@ -4,7 +4,10 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import { connectDatabase } from "./config/dbConnect.js";
 import errorMiddleware from "./middlewares/errors.js";
-import path from "path"
+import {dirname} from "path"
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 process.on("uncaughtException", (err) => {
   console.log(`ERROR: ${err}`);
