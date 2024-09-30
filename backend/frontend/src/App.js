@@ -24,7 +24,7 @@ function App() {
           <Routes>
             {userRoutes}
             {adminRoutes}
-            <Route path= "*" element={<NotFound/>}/>
+            <Routes path= "*" element={<NotFound/>}/>
 
 
 
