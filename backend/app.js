@@ -47,7 +47,7 @@ res.sendFile(path.resolve(__dirname,"frontend","build","index.html"));
 
 
 
-}
+})
 const server = app.listen(4000, () => {
   console.log(
     `Server started on PORT: ${process.env.PORT} in ${process.env.NODE_ENV} mode.`
