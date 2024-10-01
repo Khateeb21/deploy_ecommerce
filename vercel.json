@@ -15,6 +15,6 @@
       "src": "/(.*)",
       "dest": "backend/frontend/build/index.html"
     }
-  ],
+  ]
 
 }
